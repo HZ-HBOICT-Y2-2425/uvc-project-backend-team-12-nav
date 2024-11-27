@@ -2,8 +2,9 @@ import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 
 export async function loginController(req, res) {
-  const email = req.query.email;
-  const password = req.query.password;
+
+  console.log('Request Body:', req.body); // For debugging
+  const { email, password } = req.body;
 
   // Validate the incoming data
   if (!email || !password) {
@@ -13,8 +14,7 @@ export async function loginController(req, res) {
   try {
     // Initialize lowdb with default data
     const adapter = new JSONFile('db.json');
-    const defaultData = { users: [] }; // Default data structure
-    const db = new Low(adapter, defaultData);
+    const db = new Low(adapter, { users: [] });
 
     // Read data from JSON file (db.json)
     await db.read();
@@ -39,9 +39,11 @@ export async function loginController(req, res) {
       completedQuestionnaire: user.completedQuestionnaire,
     };
 
-    res.status(200).send(`Login successful: ${JSON.stringify(userData)}`);
+    res.status(200).json({
+      message: "Login successful",
+      user: userData,
+    });
   } catch (error) {
-    // Handle any errors (e.g., file reading or parsing issues)
     console.error("Error reading db.json:", error);
     res.status(500).send("Internal server error.");
   }

@@ -5,6 +5,9 @@ import { loginController } from '../controllers/loginController.js';
 
 const router = express.Router();
 
+const app = express();
+app.use(express.json());
+
 // Route to handle user signup
 router.post('/signup', signupController);
 router.post('/login', loginController);

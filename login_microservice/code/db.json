@@ -6,6 +6,20 @@
       "email": "patryk@example.com",
       "password": "password",
       "completedQuestionnaire": false
+    },
+    {
+      "id": 2,
+      "name": "p",
+      "email": "p@example.com",
+      "password": "password",
+      "completedQuestionnaire": false
+    },
+    {
+      "id": 3,
+      "name": "b",
+      "email": "b@example.com",
+      "password": "123",
+      "completedQuestionnaire": false
     }
   ]
 }
