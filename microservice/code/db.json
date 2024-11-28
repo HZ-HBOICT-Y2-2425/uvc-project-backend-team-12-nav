@@ -1,7 +1,50 @@
 {
-  "meta": {
-    "tile": "List of animals",
-    "date": "September 2024"
-  },
-  "animals" : ["dog", "cat", "elephant", "lion"]
+  "waterLogs": {
+    "user1": [
+      {
+        "type": "shower",
+        "date": "2023-10-31T12:00:00Z",
+        "duration": 10,
+        "waterUsed": 90
+      },
+      {
+        "type": "sink",
+        "date": "2023-10-31T13:00:00Z",
+        "duration": 5,
+        "waterUsed": 30
+      },
+      {
+        "type": "shower",
+        "date": "2024-11-28T22:37:15.945Z",
+        "duration": 10,
+        "waterUsed": 90
+      },
+      {
+        "type": "shower",
+        "date": "2024-11-28T22:37:42.923Z",
+        "duration": 18,
+        "waterUsed": 162
+      },
+      {
+        "type": "shower",
+        "date": "2024-11-28T22:37:54.853Z",
+        "duration": 19,
+        "waterUsed": 171
+      }
+    ],
+    "user2": [
+      {
+        "type": "toilet",
+        "date": "2023-10-31T14:00:00Z",
+        "flushes": 2,
+        "waterUsed": 12
+      },
+      {
+        "type": "shower",
+        "date": "2024-11-28T22:37:33.093Z",
+        "duration": 198,
+        "waterUsed": 1782
+      }
+    ]
+  }
 }
