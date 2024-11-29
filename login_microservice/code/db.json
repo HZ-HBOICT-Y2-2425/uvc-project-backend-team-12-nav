@@ -18,6 +18,25 @@
         "submittedAt": "2024-11-28T01:59:59.435Z"
       },
       "total": 205
+    },
+    {
+      "id": 2,
+      "name": "b",
+      "email": "b@b.b",
+      "password": "b",
+      "completedQuestionnaire": true,
+      "questionnaire": {
+        "showerTimes": "7+",
+        "showerDuration": "16+ minutes",
+        "toiletFlushes": "7+",
+        "laundryLoads": "7+",
+        "newClothesFrequency": "Yearly",
+        "recycledClothes": 0,
+        "meatConsumption": 30,
+        "waterUsage": 662,
+        "submittedAt": "2024-11-28T14:18:51.862Z"
+      },
+      "total": 662
     }
   ]
 }
