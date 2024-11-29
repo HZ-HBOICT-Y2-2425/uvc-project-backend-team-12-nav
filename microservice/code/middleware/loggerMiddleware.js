@@ -1,18 +1,16 @@
+// middleware/loggerMiddleware.js
 const loggerMiddleware = (req, res, next) => {
-  // Log the incoming request with method, URL, and timestamp
-  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-
-  // Store the original `send` method
+  const now = new Date().toISOString();
+  console.log(`[${now}] ${req.method} ${req.url}`);
+  
   const originalSend = res.send;
-
-  // Intercept the response to log its status code
-  res.send = function (body) {
-    console.log(`Response for ${req.method} ${req.url}: Status ${res.statusCode}`);
-    res.send = originalSend; // Restore the original `send` method
-    return originalSend.call(this, body); // Continue with the original `send`
+  res.send = function(body) {
+    console.log(`✨ Response: ${req.method} ${req.url} (${res.statusCode})`);
+    res.send = originalSend;
+    return originalSend.call(this, body);
   };
 
-  next(); // Proceed to the next middleware or route handler
+  next();
 };
 
 export default loggerMiddleware;

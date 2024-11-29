@@ -8,3 +8,4 @@ router.get('/', getAllOutfits);
 router.get('/check/:points', getOutfitsByPoints);
 
 export default router;
+    
