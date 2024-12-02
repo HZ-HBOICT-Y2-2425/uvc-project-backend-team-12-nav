@@ -1,18 +1,58 @@
-// start.js setup from learnnode.com by Wes Bos
+// start.js
+
 import express from 'express';
-import * as dotenv from 'dotenv';
-dotenv.config({ path: 'variables.env' });
-import indexRouter from './routes/index.js';
+import { Low } from 'lowdb';
+import { JSONFile } from 'lowdb/node';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import cors from 'cors';
+import loggerMiddleware from './middleware/loggerMiddleware.js';
+import outfitRouter from './routes/outfitRouter.js';
 
-const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// support json encoded and url-encoded bodies, mainly used for post and update
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// Declare db at the top-level scope
+let db;
 
-app.use('/', indexRouter);
+async function createServer() {
+  const app = express();
 
-app.set('port', process.env.PORT || 3011);
-const server = app.listen(app.get('port'), () => {
-  console.log(`🍿 Express running → PORT ${server.address().port}`);
+  // Middleware setup
+  app.use(cors());
+  app.use(express.json());
+  app.use(loggerMiddleware);
+
+  // Initialize LowDB with db.json and default data
+  const adapter = new JSONFile('db.json');
+  const defaultData = { outfits: [] }; // Provide default data
+  db = new Low(adapter, defaultData);
+
+  // Read data from JSON file
+  await db.read();
+
+  // Ensure db.data is initialized
+  db.data = db.data || { outfits: [] };
+
+  // Use the outfit router
+  app.use('/api/outfits', outfitRouter);
+
+  // Root route
+  app.get('/', (req, res) => {
+    res.json({ message: 'Welcome to the Outfits Microservice!' });
+  });
+
+  // Start the server
+  const PORT = process.env.PORT || 3011;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+// Call the createServer function
+createServer().catch((error) => {
+  console.error('Failed to start server:', error);
 });
+
+// Export db after it's initialized
+export { db };
