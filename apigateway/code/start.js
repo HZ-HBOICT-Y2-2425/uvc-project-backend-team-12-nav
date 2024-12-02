@@ -1,24 +1,29 @@
-// start.js setup from learnnode.com by Wes Bos
 import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import * as dotenv from 'dotenv';
-import cors from 'cors'; // Import the cors package
+import cors from 'cors';
+import routes from './routes/index.js';
 
 dotenv.config({ path: 'variables.env' });
-import indexRouter from './routes/index.js';
 
 const app = express();
+const PORT = process.env.PORT || 80;
 
-// Enable CORS middleware
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(cors());
-
-// Support JSON encoded and URL-encoded bodies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Use the index router
-app.use('/', indexRouter);
+app.use('/', routes);
 
-app.set('port', process.env.PORT || 3010);
-const server = app.listen(app.get('port'), () => {
-  console.log(`🍿 Express running → PORT ${server.address().port}`);
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.listen(PORT, () => {
+  console.log(`API Gateway running on port ${PORT}`);
 });
