@@ -1,0 +1,42 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "a",
+      "email": "a@a.a",
+      "password": "a",
+      "completedQuestionnaire": true,
+      "questionnaire": {
+        "showerTimes": "1-3",
+        "showerDuration": "1-5 minutes",
+        "toiletFlushes": "1-3",
+        "laundryLoads": "1-3",
+        "newClothesFrequency": "Weekly",
+        "recycledClothes": 0,
+        "meatConsumption": 0,
+        "waterUsage": 205,
+        "submittedAt": "2024-11-28T01:59:59.435Z"
+      },
+      "total": 205
+    },
+    {
+      "id": 2,
+      "name": "b",
+      "email": "b@b.b",
+      "password": "b",
+      "completedQuestionnaire": true,
+      "questionnaire": {
+        "showerTimes": "7+",
+        "showerDuration": "16+ minutes",
+        "toiletFlushes": "7+",
+        "laundryLoads": "7+",
+        "newClothesFrequency": "Yearly",
+        "recycledClothes": 0,
+        "meatConsumption": 30,
+        "waterUsage": 662,
+        "submittedAt": "2024-11-28T14:18:51.862Z"
+      },
+      "total": 662
+    }
+  ]
+}
