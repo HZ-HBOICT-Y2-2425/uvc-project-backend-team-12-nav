@@ -1,15 +1,6 @@
+version: '3.8'
+
 services:
-  microservice:
-    container_name: microservice
-    build: ./microservice
-    volumes:
-      - ./microservice/code:/usr/src/app
-    networks:
-      - msexample
-    ports:
-      - "3011:3011"
-    working_dir: /usr/src/app
-    command: bash -c "npm install && npm run dev"
 
   gateway:
     container_name: apigateway
@@ -32,6 +23,18 @@ services:
       - msexample
     ports:
       - "3012:3012"
+    working_dir: /usr/src/app
+    command: bash -c "npm install && npm run dev"
+
+  outfit_microservice:
+    container_name: outfit_microservice
+    build: ./outfit_microservice
+    volumes:
+      - ./outfit_microservice/code:/usr/src/app
+    networks:
+      - msexample
+    ports:
+      - "3013:3013"
     working_dir: /usr/src/app
     command: bash -c "npm install && npm run dev"
 
