@@ -1,5 +1,61 @@
 {
   "waterLogs": {
+    "1": [
+      {
+        "type": "shower",
+        "date": "2024-12-04T10:17:31.376Z",
+        "duration": 0.03333333333333333,
+        "waterUsed": 0.3
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-04T10:17:59.226Z",
+        "duration": 0.1,
+        "waterUsed": 0.9
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-04T10:20:33.366Z",
+        "duration": 1.3333333333333333,
+        "waterUsed": 12
+      },
+      {
+        "type": "sink",
+        "date": "2024-12-04T10:35:09.650Z",
+        "duration": 0.05,
+        "waterUsed": 0.30000000000000004
+      },
+      {
+        "type": "sink",
+        "date": "2024-12-04T10:40:49.939Z",
+        "duration": 0.35,
+        "waterUsed": 2.0999999999999996
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-04T10:40:53.952Z",
+        "duration": 0.016666666666666666,
+        "waterUsed": 0.15
+      },
+      {
+        "type": "toilet",
+        "date": "2024-12-04T10:46:40.828Z",
+        "flushes": 1,
+        "waterUsed": 6
+      },
+      {
+        "type": "toilet",
+        "date": "2024-12-04T10:54:56.810Z",
+        "flushes": 1,
+        "waterUsed": 6
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-04T10:58:46.648Z",
+        "loads": 1,
+        "waterUsed": 50
+      }
+    ],
     "user1": [
       {
         "type": "shower",
@@ -30,6 +86,12 @@
         "date": "2024-11-28T22:37:54.853Z",
         "duration": 19,
         "waterUsed": 171
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-04T10:04:20.522Z",
+        "duration": 19,
+        "waterUsed": 171
       }
     ],
     "user2": [
@@ -44,6 +106,20 @@
         "date": "2024-11-28T22:37:33.093Z",
         "duration": 198,
         "waterUsed": 1782
+      }
+    ],
+    "testuser": [
+      {
+        "type": "sink",
+        "date": "2024-12-04T10:33:44.985Z",
+        "duration": 2.4166666666666665,
+        "waterUsed": 14.5
+      },
+      {
+        "type": "sink",
+        "date": "2024-12-04T10:34:01.059Z",
+        "duration": 0.05,
+        "waterUsed": 0.30000000000000004
       }
     ]
   }
