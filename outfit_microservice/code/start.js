@@ -35,7 +35,7 @@ async function createServer() {
   db.data = db.data || { outfits: [] };
 
   // Use the outfit router
-  app.use('/api/outfits', outfitRouter);
+  app.use('/outfits', outfitRouter);
 
   // Root route
   app.get('/', (req, res) => {
@@ -43,7 +43,7 @@ async function createServer() {
   });
 
   // Start the server
-  const PORT = process.env.PORT || 3011;
+  const PORT = process.env.PORT || 3013;
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });

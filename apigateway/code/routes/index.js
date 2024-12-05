@@ -3,12 +3,6 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 
 const router = express.Router();
 
-// Existing microservice proxy
-const microserviceProxy = createProxyMiddleware({
-  target: 'http://microservice:3011',
-  changeOrigin: true,
-});
-
 // Add the signup proxy route
 const signupServiceProxy = createProxyMiddleware({
   target: 'http://signup_microservice:3012',
@@ -35,13 +29,27 @@ const submitQuestionnaireProxy = createProxyMiddleware({
   },
 });
 
+const outfit_microserviceProxy = createProxyMiddleware({
+  target: 'http://outfit_microservice:3013',
+  changeOrigin: true,
+  pathRewrite: {
+    '^/outfit': '/outfit',
+  },
+  onError: (err, req, res) => {
+    console.error(`Error proxying /outfit: ${err.message}`);
+    res.status(500).json({ message: 'Error in proxying outfit request.' });
+  },
+});
+
+
 // Apply the signup proxy to `/signup` route
 router.use('/signup', signupServiceProxy);
 
-// Apply existing proxy for all other microservice routes
-router.use('/microservice', microserviceProxy);
 
 // Apply questionnaire submission proxy
 router.use('/submit-questionnaire', submitQuestionnaireProxy);
+
+// Apply outfit microservice proxy
+router.use('/outfit', outfit_microserviceProxy);
 
 export default router;
