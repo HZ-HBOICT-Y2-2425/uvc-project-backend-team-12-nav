@@ -54,6 +54,212 @@
         "date": "2024-12-04T10:58:46.648Z",
         "loads": 1,
         "waterUsed": 50
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-04T20:15:51.597Z",
+        "loads": 1,
+        "waterUsed": 50
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-05T12:10:07.511Z",
+        "duration": 0.016666666666666666,
+        "waterUsed": 0.15
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-05T12:10:23.154Z",
+        "duration": 0.05,
+        "waterUsed": 0.45
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-05T12:11:08.678Z",
+        "loads": 1,
+        "waterUsed": 50
+      },
+      {
+        "type": "sink",
+        "date": "2024-12-05T12:11:19.639Z",
+        "duration": 0.016666666666666666,
+        "waterUsed": 0.1
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-05T12:18:53.270Z",
+        "loads": 1,
+        "waterUsed": 50
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-05T12:19:54.019Z",
+        "loads": 1,
+        "waterUsed": 50
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-05T12:20:18.768Z",
+        "loads": 1,
+        "waterUsed": 50
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-05T12:20:31.089Z",
+        "loads": 1,
+        "waterUsed": 50
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-05T12:24:08.577Z",
+        "loads": 1,
+        "waterUsed": 50
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-05T12:27:14.218Z",
+        "loads": 1,
+        "waterUsed": 50
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-05T12:28:47.391Z",
+        "loads": 1,
+        "waterUsed": 50
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-05T12:31:25.732Z",
+        "loads": 1,
+        "waterUsed": 50
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-05T12:34:26.397Z",
+        "loads": 1,
+        "waterUsed": 50
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-05T12:34:45.718Z",
+        "loads": 1,
+        "waterUsed": 50
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-05T12:36:28.032Z",
+        "loads": 1,
+        "waterUsed": 50
+      },
+      {
+        "type": "sink",
+        "date": "2024-12-05T12:38:14.182Z",
+        "duration": 0.03333333333333333,
+        "waterUsed": 0.2
+      },
+      {
+        "type": "sink",
+        "date": "2024-12-05T12:43:21.717Z",
+        "duration": 0.016666666666666666,
+        "waterUsed": 0.1
+      },
+      {
+        "type": "sink",
+        "date": "2024-12-05T12:47:24.489Z",
+        "duration": 0.16666666666666666,
+        "waterUsed": 1
+      },
+      {
+        "type": "sink",
+        "date": "2024-12-05T12:48:56.501Z",
+        "duration": 1.4,
+        "waterUsed": 8.399999999999999
+      },
+      {
+        "type": "sink",
+        "date": "2024-12-05T12:49:18.712Z",
+        "duration": 0.03333333333333333,
+        "waterUsed": 0.2
+      },
+      {
+        "type": "sink",
+        "date": "2024-12-05T14:09:54.755Z",
+        "duration": 0.08333333333333333,
+        "waterUsed": 0.5
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-05T14:10:24.192Z",
+        "loads": 1,
+        "waterUsed": 50
+      },
+      {
+        "type": "other",
+        "category": "Cooking",
+        "date": "2024-12-05T14:37:08.609Z",
+        "waterUsed": 1,
+        "cups": 2
+      },
+      {
+        "type": "other",
+        "category": "Cleaning",
+        "date": "2024-12-05T14:37:47.493Z",
+        "waterUsed": 5,
+        "buckets": 1
+      },
+      {
+        "type": "other",
+        "category": "Gardening",
+        "date": "2024-12-05T14:38:00.657Z",
+        "waterUsed": 0.2,
+        "time": 2
+      },
+      {
+        "type": "other",
+        "category": "Drinking",
+        "date": "2024-12-05T14:38:08.769Z",
+        "waterUsed": 9,
+        "liters": 9
+      },
+      {
+        "type": "other",
+        "category": "Gardening",
+        "date": "2024-12-05T14:55:18.894Z",
+        "waterUsed": 0,
+        "time": 0
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-05T15:03:44.827Z",
+        "loads": 1,
+        "waterUsed": 38,
+        "brand": "Siemens"
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-05T15:05:08.072Z",
+        "loads": 1,
+        "waterUsed": 40,
+        "brand": "LG"
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-05T15:22:02.622Z",
+        "loads": 1,
+        "waterUsed": 45,
+        "brand": "Samsung"
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-05T15:24:50.652Z",
+        "duration": 0.03333333333333333,
+        "waterUsed": 0.3
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-05T15:29:25.361Z",
+        "duration": 0.25,
+        "waterUsed": 2.25
       }
     ],
     "user1": [
@@ -120,6 +326,18 @@
         "date": "2024-12-04T10:34:01.059Z",
         "duration": 0.05,
         "waterUsed": 0.30000000000000004
+      }
+    ],
+    "user123": [
+      {
+        "type": "other",
+        "date": "2024-12-05T13:14:03.026Z",
+        "waterUsed": 1.5
+      },
+      {
+        "type": "other",
+        "date": "2024-12-05T14:22:38.352Z",
+        "waterUsed": 7
       }
     ]
   }

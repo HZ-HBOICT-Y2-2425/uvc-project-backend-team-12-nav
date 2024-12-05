@@ -1,4 +1,3 @@
-// apigateway/start.js
 
 import express from 'express';
 import path from 'path';

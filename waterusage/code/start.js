@@ -2,7 +2,7 @@
 
 import express from 'express';
 import cors from 'cors';
-import waterUsageRouter from './routes/waterUsageRouter.js';
+import waterUsageRouter from './routes/waterusageRouter.js';
 
 async function createServer() {
   const app = express();
