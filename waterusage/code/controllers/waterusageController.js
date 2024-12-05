@@ -292,8 +292,8 @@ export const getShowerUsageStats = async (req, res) => {
       message: 'Shower usage statistics retrieved',
       waterUsageToday,
       waterUsageYesterday,
-      bottleEquivalentsToday: waterUsageToday / 2, // Assuming 2 liters per bottle
-      bottleEquivalentsYesterday: waterUsageYesterday / 2,
+      bottleEquivalentsToday: waterUsageToday / 5, // Assuming 2 liters per bottle
+      bottleEquivalentsYesterday: waterUsageYesterday / 5,
     });
   } catch (error) {
     console.error('Error retrieving shower usage stats:', error);

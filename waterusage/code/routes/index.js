@@ -3,7 +3,6 @@ import { responseExample, updateExample, responseByIdExample } from '../controll
 import { checkName } from '../middleware/exampleMiddleware.js';
 const router = express.Router();
 
-// routes
 router.get('/', (req, res, next) => {
   res.json('hi');
 });

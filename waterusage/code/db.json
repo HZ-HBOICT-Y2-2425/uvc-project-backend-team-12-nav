@@ -260,6 +260,90 @@
         "date": "2024-12-05T15:29:25.361Z",
         "duration": 0.25,
         "waterUsed": 2.25
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-05T16:02:50.432Z",
+        "duration": 0.016666666666666666,
+        "waterUsed": 0.15
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-05T16:03:35.315Z",
+        "duration": 0.55,
+        "waterUsed": 4.95
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-05T16:04:59.182Z",
+        "duration": 0.08333333333333333,
+        "waterUsed": 0.75
+      },
+      {
+        "type": "sink",
+        "date": "2024-12-05T16:05:27.211Z",
+        "duration": 0.06666666666666667,
+        "waterUsed": 0.4
+      },
+      {
+        "type": "toilet",
+        "date": "2024-12-05T16:07:55.299Z",
+        "flushes": 1,
+        "waterUsed": 6
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-05T16:11:13.028Z",
+        "duration": 0.65,
+        "waterUsed": 5.8500000000000005
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-05T16:12:23.165Z",
+        "duration": 0.5833333333333334,
+        "waterUsed": 5.25
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-05T16:13:38.436Z",
+        "duration": 0.016666666666666666,
+        "waterUsed": 0.15
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-05T16:15:06.826Z",
+        "duration": 0.016666666666666666,
+        "waterUsed": 0.15
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-05T16:21:38.770Z",
+        "duration": 1.1166666666666667,
+        "waterUsed": 10.05
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-05T16:23:16.412Z",
+        "duration": 0.1,
+        "waterUsed": 0.9
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-05T16:27:05.257Z",
+        "duration": 0.016666666666666666,
+        "waterUsed": 0.15
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-05T16:27:15.699Z",
+        "duration": 0.05,
+        "waterUsed": 0.45
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-05T16:33:08.006Z",
+        "duration": 0.03333333333333333,
+        "waterUsed": 0.3
       }
     ],
     "user1": [

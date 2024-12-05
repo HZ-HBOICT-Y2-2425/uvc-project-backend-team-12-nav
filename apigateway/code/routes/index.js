@@ -14,7 +14,7 @@ const waterUsageProxy = createProxyMiddleware('/api', {
 });
 
 // Apply the water usage proxy
-router.use('/api', waterUsageProxy);
+router.use('/waterlog', waterUsageProxy);
 
 // Export the router
 export default router;
