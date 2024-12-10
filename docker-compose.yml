@@ -1,12 +1,9 @@
 version: '3.8'
 
 services:
-<<<<<<< HEAD
 
   gateway:
-=======
   apigateway:
->>>>>>> feature/waterlogMicroservice
     container_name: apigateway
     build: ./apigateway
     volumes:
