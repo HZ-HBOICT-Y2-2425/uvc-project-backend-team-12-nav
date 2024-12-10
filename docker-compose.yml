@@ -1,18 +1,37 @@
 version: '3.8'
 
 services:
+<<<<<<< HEAD
 
   gateway:
+=======
+  apigateway:
+>>>>>>> feature/waterlogMicroservice
     container_name: apigateway
     build: ./apigateway
     volumes:
-      - ./apigateway/code:/usr/src/app
+      - ./apigateway/code:/app
     networks:
       - msexample
     ports:
       - "3010:3010"
-    working_dir: /usr/src/app
-    command: bash -c "npm install && npm run dev"
+    working_dir: /app
+    command: npm start
+    depends_on:
+      - waterusage
+
+  waterusage:
+    container_name: waterusage
+    build: ./waterusage
+    volumes:
+      - ./waterusage/code:/app
+      - ./waterusage/db.json:/app/db.json
+    networks:
+      - msexample
+    ports:
+      - "3011:3011"
+    working_dir: /app
+    command: npm start
 
   login_microservice:
     container_name: login_microservice
