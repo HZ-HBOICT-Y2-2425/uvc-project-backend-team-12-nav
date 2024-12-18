@@ -53,7 +53,7 @@ router.use('/submit-questionnaire', submitQuestionnaireProxy);
 router.use('/outfit', outfit_microserviceProxy);
 
 // Proxy to the Water Usage Microservice (port 3011)
-const waterUsageProxy = createProxyMiddleware('/api', {
+const waterUsageProxy = createProxyMiddleware({
   target: 'http://waterusage:3011',
   changeOrigin: true,
   onError: (err, req, res) => {

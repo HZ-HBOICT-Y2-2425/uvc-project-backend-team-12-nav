@@ -301,6 +301,121 @@ export const getShowerUsageStats = async (req, res) => {
   }
 };
 
+function getStartOfWeek() {
+  const now = new Date();
+  const dayOfWeek = now.getDay(); // Sunday = 0, Monday = 1, ..., Saturday = 6
+  const startOfWeek = new Date(now);
+  startOfWeek.setDate(now.getDate() - dayOfWeek);
+  startOfWeek.setHours(0, 0, 0, 0); // Reset time to midnight
+  return startOfWeek.toISOString();
+}
+
+
+// Function to calculate total water usage for a user
+export const getTotalWaterUsage = async (req, res) => {
+  try {
+    await initDB();
+    const { userId } = req.query;
+    if (!userId) return res.status(400).json({ message: 'User ID is required' });
+
+    const userLogs = db.data.waterLogs[userId] || [];
+    const currentWeek = getStartOfWeek();
+
+    // Calculate weekly usage
+    const currentWeekUsage = userLogs
+      .filter(log => log.date >= currentWeek)
+      .reduce((sum, log) => sum + log.waterUsed, 0);
+
+    // Compare with last week
+    const lastWeek = new Date(currentWeek);
+    lastWeek.setDate(lastWeek.getDate() - 7);
+    const lastWeekKey = lastWeek.toISOString().split('T')[0];
+    const lastWeekUsage = db.data.weeklyUsage?.[userId]?.[lastWeekKey] || 0;
+
+    // Save current week's usage
+    db.data.weeklyUsage ||= {};
+    db.data.weeklyUsage[userId] ||= {};
+    db.data.weeklyUsage[userId][currentWeek] = currentWeekUsage;
+    await db.write();
+
+    // Ensure weeklySaving defaults to 0
+    const weeklySaving = Math.max(0, lastWeekUsage - currentWeekUsage) || 0;
+
+    res.json({
+      message: 'Total water usage retrieved successfully',
+      totalWaterUsed: currentWeekUsage,
+      weeklySaving, // Explicitly send 0 if not available
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Function to get statistics for daily, weekly, and monthly usage
+export const getWaterUsageStats = async (req, res) => {
+  try {
+    await initDB();
+    const { userId } = req.query;
+    if (!userId) return res.status(400).json({ message: 'User ID is required' });
+
+    const userLogs = db.data.waterLogs[userId] || [];
+    const today = new Date();
+    const todayDate = today.toISOString().split('T')[0];
+
+    // Group usage into categories: daily, weekly, and monthly
+    const stats = {
+      dailyUsage: [],
+      weeklyUsage: [],
+      monthlyUsage: [],
+    };
+
+    const dailyMap = {};
+    const weeklyMap = {};
+    const monthlyMap = {};
+
+    // Start of the current week (Sunday)
+    const startOfWeek = getStartOfWeek(today).toISOString();
+
+    userLogs.forEach(log => {
+      const logDate = log.date.split('T')[0];
+      const logMonth = log.date.slice(0, 7); // "YYYY-MM"
+
+      // Aggregate daily usage
+      if (!dailyMap[logDate]) {
+        dailyMap[logDate] = { totalUsage: 0, shower: 0, toilet: 0, tap: 0 };
+      }
+      dailyMap[logDate].totalUsage += log.waterUsed;
+
+      if (log.type === 'shower') dailyMap[logDate].shower += log.waterUsed;
+      if (log.type === 'toilet') dailyMap[logDate].toilet += log.waterUsed;
+      if (log.type === 'sink') dailyMap[logDate].tap += log.waterUsed;
+
+      // Aggregate weekly usage
+      if (log.date >= startOfWeek) {
+        const weekKey = startOfWeek.split('T')[0]; // Current week key
+        if (!weeklyMap[weekKey]) weeklyMap[weekKey] = { totalUsage: 0 };
+        weeklyMap[weekKey].totalUsage += log.waterUsed;
+      }
+
+      // Aggregate monthly usage
+      if (!monthlyMap[logMonth]) {
+        monthlyMap[logMonth] = { totalUsage: 0 };
+      }
+      monthlyMap[logMonth].totalUsage += log.waterUsed;
+    });
+
+    // Convert daily, weekly, and monthly maps to arrays
+    stats.dailyUsage = Object.keys(dailyMap).map(date => ({ date, ...dailyMap[date] }));
+    stats.weeklyUsage = Object.keys(weeklyMap).map(week => ({ week, ...weeklyMap[week] }));
+    stats.monthlyUsage = Object.keys(monthlyMap).map(month => ({ month, ...monthlyMap[month] }));
+
+    res.json({ message: 'Water usage statistics retrieved', stats });
+  } catch (error) {
+    console.error('Error fetching water usage stats:', error.message);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 // Function to handle stats requests for other types
 export const statsNotAvailable = (req, res) => {
   res.status(403).json({ message: 'Statistics are only available for shower usage.' });

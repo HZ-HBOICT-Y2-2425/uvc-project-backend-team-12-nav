@@ -344,6 +344,273 @@
         "date": "2024-12-05T16:33:08.006Z",
         "duration": 0.03333333333333333,
         "waterUsed": 0.3
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-12T12:21:43.888Z",
+        "duration": 0.03333333333333333,
+        "waterUsed": 0.3
+      },
+      {
+        "type": "sink",
+        "date": "2024-12-12T12:24:00.757Z",
+        "duration": 0.05,
+        "waterUsed": 0.30000000000000004
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-12T12:32:51.325Z",
+        "duration": 0.06666666666666667,
+        "waterUsed": 0.6
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-12T12:39:43.952Z",
+        "duration": 0.06666666666666667,
+        "waterUsed": 0.6
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-12T12:40:15.868Z",
+        "duration": 0.03333333333333333,
+        "waterUsed": 0.3
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-12T13:12:05.100Z",
+        "loads": 1,
+        "waterUsed": 45,
+        "brand": "Samsung"
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-12T13:15:33.989Z",
+        "loads": 1,
+        "waterUsed": 48,
+        "brand": "Haier"
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-12T13:16:03.928Z",
+        "loads": 1,
+        "waterUsed": 48,
+        "brand": "Haier"
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-12T13:16:10.294Z",
+        "loads": 1,
+        "waterUsed": 48,
+        "brand": "Haier"
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-12T13:20:09.173Z",
+        "loads": 1,
+        "waterUsed": 42,
+        "brand": "Electrolux"
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-12T13:20:24.544Z",
+        "loads": 1,
+        "waterUsed": 35,
+        "brand": "Bosch"
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-12T13:20:36.653Z",
+        "loads": 1,
+        "waterUsed": 35,
+        "brand": "Bosch"
+      },
+      {
+        "type": "toilet",
+        "date": "2024-12-12T13:28:27.170Z",
+        "flushes": 1,
+        "waterUsed": 6
+      },
+      {
+        "type": "toilet",
+        "date": "2024-12-12T14:29:53.648Z",
+        "flushes": 1,
+        "waterUsed": 6
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-12T14:45:58.328Z",
+        "duration": 0.13333333333333333,
+        "waterUsed": 1.2
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-12T14:47:05.050Z",
+        "duration": 0.11666666666666667,
+        "waterUsed": 1.05
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-12T14:49:31.603Z",
+        "duration": 0.06666666666666667,
+        "waterUsed": 0.6
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-12T15:01:55.688Z",
+        "duration": 0.08333333333333333,
+        "waterUsed": 0.75
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-12T15:13:09.478Z",
+        "duration": 0.11666666666666667,
+        "waterUsed": 1.05
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-12T15:13:35.516Z",
+        "duration": 0.25,
+        "waterUsed": 2.25
+      },
+      {
+        "type": "other",
+        "category": "Cleaning",
+        "date": "2024-12-12T15:33:23.726Z",
+        "waterUsed": 5,
+        "buckets": 1
+      },
+      {
+        "type": "other",
+        "category": "Cooking",
+        "date": "2024-12-12T15:34:57.223Z",
+        "waterUsed": 0,
+        "cups": 0
+      },
+      {
+        "type": "other",
+        "category": "Cooking",
+        "date": "2024-12-12T15:59:24.224Z",
+        "waterUsed": 0,
+        "cups": 0
+      },
+      {
+        "type": "other",
+        "category": "Drinking",
+        "date": "2024-12-12T16:06:42.730Z",
+        "waterUsed": 10,
+        "liters": 10
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-12T16:17:01.632Z",
+        "duration": 0.05,
+        "waterUsed": 0.45
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-12T16:20:06.632Z",
+        "duration": 0.06666666666666667,
+        "waterUsed": 0.6
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-12T16:27:56.639Z",
+        "duration": 0.03333333333333333,
+        "waterUsed": 0.3
+      },
+      {
+        "type": "other",
+        "category": "Cooking",
+        "date": "2024-12-12T16:28:11.678Z",
+        "waterUsed": 1,
+        "cups": 2
+      },
+      {
+        "type": "other",
+        "category": "Cooking",
+        "date": "2024-12-16T08:03:29.006Z",
+        "waterUsed": 1.5,
+        "cups": 3
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-16T08:47:46.436Z",
+        "duration": 0.05,
+        "waterUsed": 0.45
+      },
+      {
+        "type": "sink",
+        "date": "2024-12-16T08:48:25.559Z",
+        "duration": 0.15,
+        "waterUsed": 0.8999999999999999
+      },
+      {
+        "type": "washing",
+        "date": "2024-12-16T08:48:52.494Z",
+        "loads": 1,
+        "waterUsed": 45,
+        "brand": "Samsung"
+      },
+      {
+        "type": "toilet",
+        "date": "2024-12-16T08:49:26.884Z",
+        "flushes": 1,
+        "waterUsed": 6
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-17T09:39:24.614Z",
+        "duration": 0.23333333333333334,
+        "waterUsed": 2.1
+      },
+      {
+        "type": "other",
+        "category": "Cleaning",
+        "date": "2024-12-17T09:40:45.895Z",
+        "waterUsed": 25,
+        "buckets": 5
+      },
+      {
+        "type": "sink",
+        "date": "2024-12-17T09:47:17.893Z",
+        "duration": 0.05,
+        "waterUsed": 0.30000000000000004
+      },
+      {
+        "type": "sink",
+        "date": "2024-12-17T09:47:33.797Z",
+        "duration": 0.13333333333333333,
+        "waterUsed": 0.8
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-17T10:02:51.050Z",
+        "duration": 0.18333333333333332,
+        "waterUsed": 1.65
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-17T10:38:22.868Z",
+        "duration": 0.1,
+        "waterUsed": 0.9
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-17T11:32:51.050Z",
+        "duration": 0.06666666666666667,
+        "waterUsed": 0.6
+      },
+      {
+        "type": "shower",
+        "date": "2024-12-17T11:33:30.014Z",
+        "duration": 0.16666666666666666,
+        "waterUsed": 1.5
+      },
+      {
+        "type": "toilet",
+        "date": "2024-12-17T14:47:33.794Z",
+        "flushes": 1,
+        "waterUsed": 6
       }
     ],
     "user1": [
@@ -424,5 +691,10 @@
         "waterUsed": 7
       }
     ]
+  },
+  "weeklyUsage": {
+    "1": {
+      "2024-12-14T23:00:00.000Z": 92.7
+    }
   }
 }

@@ -13,7 +13,7 @@ async function createServer() {
   app.use(express.json());
 
   // Use water usage router for /api/water-usage routes
-  app.use('/api/water-usage', waterUsageRouter);
+  app.use('/waterlog', waterUsageRouter);
 
   // Basic route for root path
   app.get('/', (req, res) => {
