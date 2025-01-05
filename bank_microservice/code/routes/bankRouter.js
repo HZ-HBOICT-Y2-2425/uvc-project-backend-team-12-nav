@@ -1,11 +1,19 @@
 // routes/bankRouter.js
 import express from 'express';
-import { getBalance, verifyAndDeduct, getTransactions } from '../controllers/bankController.js';
+import { 
+  getBalance, 
+  verifyAndDeduct, 
+  getTransactions, 
+  updateBalance,
+  addBalance 
+} from '../controllers/bankController.js';
 
 const router = express.Router();
 
-router.get('/balance/:userId', getBalance);
-router.post('/transaction/:userId', verifyAndDeduct);
-router.get('/transactions/:userId', getTransactions);
+router.get('/balance/:id', getBalance);  // Now will match /bank/balance/:id
+router.post('/transaction/:id', verifyAndDeduct);
+router.get('/transactions/:id', getTransactions);
+router.put('/balance/:id', updateBalance);
+router.post('/balance/add/:id', addBalance);
 
 export default router;

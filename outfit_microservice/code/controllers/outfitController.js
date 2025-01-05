@@ -2,20 +2,8 @@
 import { db } from '../start.js';
 
 export const getAllOutfits = (req, res) => {
-  console.log('Fetching all items from inventory...');
   const outfits = db.data.outfits;
-  console.log('Items found:', outfits.map(o => `${o.type}: ${o.name}`).join(', '));
   res.json(outfits);
-};
-
-export const getOutfitsByPoints = (req, res) => {
-  const userPoints = parseInt(req.params.points, 10);
-  if (isNaN(userPoints)) {
-    return res.status(400).json({ error: 'Invalid points value' });
-  }
-  const affordableOutfits = db.data.outfits.filter(outfit => outfit.price <= userPoints);
-  console.log('Affordable items:', affordableOutfits.map(o => `${o.type}: ${o.name}`).join(', '));
-  res.json(affordableOutfits);
 };
 
 export const getOutfitById = (req, res) => {
@@ -23,10 +11,61 @@ export const getOutfitById = (req, res) => {
   const outfit = db.data.outfits.find(o => o.id === id);
   
   if (!outfit) {
-    console.log(`⚠️ Item not found: ${id}`);
-    return res.status(404).json({ error: 'Item not found' });
+    return res.status(404).json({ error: 'Outfit not found' });
   }
 
-  console.log(`🎯 Fetching: ${outfit.type} - ${outfit.name} (${outfit.id})`);
   res.json(outfit);
+};
+
+export const purchaseOutfit = async (req, res) => {
+  const { userId, outfitId } = req.params;
+  
+  const outfit = db.data.outfits.find(o => o.id === outfitId);
+  if (!outfit) {
+    return res.status(404).json({ error: 'Outfit not found' });
+  }
+
+  try {
+    const response = await fetch(`http://localhost:3020/bank/transaction/${userId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        amount: outfit.price,
+        itemId: outfitId
+      })
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      return res.status(response.status).json(error);
+    }
+
+    const transaction = await response.json();
+    
+    // Add to user's purchased items if you want to track this
+    if (!db.data.purchases) {
+      db.data.purchases = [];
+    }
+    
+    db.data.purchases.push({
+      userId,
+      outfitId,
+      purchaseDate: new Date().toISOString(),
+      transactionId: transaction.transaction.id
+    });
+    
+    await db.write();
+
+    res.json({
+      success: true,
+      outfit,
+      transaction: transaction.transaction
+    });
+
+  } catch (error) {
+    console.error('Purchase failed:', error);
+    res.status(500).json({ error: 'Purchase failed' });
+  }
 };

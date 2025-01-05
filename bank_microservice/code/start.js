@@ -1,4 +1,4 @@
-// start.js (bank service)
+// start.js in bank service
 import express from 'express';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
@@ -22,17 +22,33 @@ async function createServer() {
 
   const adapter = new JSONFile('db.json');
   const defaultData = { 
-    balances: [{
-      userId: "user1",
-      amount: 100
-    }],
-    transactions: [] 
+    balances: [
+      {
+        id: 1,
+        amount: 1000
+      },
+      {
+        id: 2,
+        amount: 50
+      },
+      {
+        id: 3,
+        amount: 100
+      }
+    ],
+    transactions: []
   };
+  
   db = new Low(adapter, defaultData);
-
   await db.read();
-  db.data = db.data || defaultData;
 
+  // This is important: we're explicitly setting db.data if it's null
+  if (!db.data) {
+    db.data = defaultData;
+    await db.write();
+  }
+
+  // Change this line - we want to use bankRouter for all /bank routes
   app.use('/bank', bankRouter);
 
   app.get('/', (req, res) => {
@@ -46,7 +62,7 @@ async function createServer() {
 }
 
 createServer().catch((error) => {
-  console.error('Failed to start bank server:', error);
+  console.error('Failed to start server:', error);
 });
 
 export { db };

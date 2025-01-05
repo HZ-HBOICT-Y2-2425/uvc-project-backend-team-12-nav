@@ -1,15 +1,18 @@
-// start.js setup from learnnode.com by Wes Bos
+// start.js
 import express from 'express';
 import * as dotenv from 'dotenv';
-import cors from 'cors'; // Import the cors package
+import cors from 'cors';
+import indexRouter from './routes/index.js';
 
 dotenv.config({ path: 'variables.env' });
-import indexRouter from './routes/index.js';
 
 const app = express();
 
-// Enable CORS middleware
-app.use(cors());
+// Enable CORS with specific options
+app.use(cors({
+  origin: 'http://localhost:5173', // Your frontend URL
+  credentials: true
+}));
 
 // Support JSON encoded and URL-encoded bodies
 app.use(express.json());

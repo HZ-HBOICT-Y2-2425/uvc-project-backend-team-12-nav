@@ -1,32 +1,18 @@
 {
   "balances": [
     {
-      "userId": "user1",
-      "amount": 880
+      "id": 1,
+      "amount": 1000
     },
     {
-      "userId": "user2",
+      "id": 2,
       "amount": 50
+    },
+    {
+      "id": 3,
+      "amount": 100
     }
   ],
   "transactions": [
-    {
-      "id": "tr_1736036498401",
-      "userId": "user1",
-      "itemId": "hat_1",
-      "amount": 50,
-      "type": "purchase",
-      "timestamp": "2025-01-05T00:21:38.401Z",
-      "balanceAfter": 950
-    },
-    {
-      "id": "tr_1736036502049",
-      "userId": "user1",
-      "itemId": "shirt_1",
-      "amount": 70,
-      "type": "purchase",
-      "timestamp": "2025-01-05T00:21:42.049Z",
-      "balanceAfter": 880
-    }
   ]
 }
