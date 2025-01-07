@@ -301,14 +301,103 @@ export const getShowerUsageStats = async (req, res) => {
   }
 };
 
-function getStartOfWeek() {
-  const now = new Date();
+
+function getStartOfWeek(date = new Date()) {
+  const now = new Date(date);
   const dayOfWeek = now.getDay(); // Sunday = 0, Monday = 1, ..., Saturday = 6
-  const startOfWeek = new Date(now);
-  startOfWeek.setDate(now.getDate() - dayOfWeek);
-  startOfWeek.setHours(0, 0, 0, 0); // Reset time to midnight
-  return startOfWeek.toISOString();
+  const startOfWeek = new Date(now); // Create a new date object
+  startOfWeek.setDate(now.getDate() - dayOfWeek); // Go back to Sunday
+  startOfWeek.setHours(0, 0, 0, 0); // Set to beginning of day
+  return startOfWeek;
 }
+
+export const getWaterUsageStats = async (req, res) => {
+  try {
+    await initDB();
+    const { userId } = req.query;
+    if (!userId) return res.status(400).json({ message: 'User ID is required' });
+
+    const userLogs = db.data.waterLogs[userId] || [];
+    const today = new Date();
+
+    // Get start of current week
+    const startOfWeek = getStartOfWeek();
+    const startOfWeekStr = startOfWeek.toISOString();
+
+    // Group usage into categories: daily, weekly, and monthly
+    const stats = {
+      dailyUsage: [],
+      weeklyUsage: [],
+      monthlyUsage: [],
+    };
+
+    const dailyMap = {};
+    const weeklyMap = {};
+    const monthlyMap = {};
+
+    userLogs.forEach(log => {
+      const logDate = log.date.split('T')[0];
+      const logMonth = log.date.slice(0, 7); // "YYYY-MM"
+
+      // Aggregate daily usage
+      if (!dailyMap[logDate]) {
+        dailyMap[logDate] = { totalUsage: 0, shower: 0, toilet: 0, tap: 0 };
+      }
+      dailyMap[logDate].totalUsage += log.waterUsed;
+
+      if (log.type === 'shower') dailyMap[logDate].shower += log.waterUsed;
+      if (log.type === 'toilet') dailyMap[logDate].toilet += log.waterUsed;
+      if (log.type === 'sink') dailyMap[logDate].tap += log.waterUsed;
+
+      // Aggregate weekly usage
+      if (new Date(log.date) >= startOfWeek) {
+        const weekKey = startOfWeekStr.split('T')[0];
+        if (!weeklyMap[weekKey]) weeklyMap[weekKey] = { totalUsage: 0 };
+        weeklyMap[weekKey].totalUsage += log.waterUsed;
+      }
+
+      // Aggregate monthly usage
+      if (!monthlyMap[logMonth]) {
+        monthlyMap[logMonth] = { totalUsage: 0 };
+      }
+      monthlyMap[logMonth].totalUsage += log.waterUsed;
+    });
+
+    // Convert maps to arrays
+    stats.dailyUsage = Object.entries(dailyMap).map(([date, usage]) => ({
+      date,
+      ...usage
+    }));
+    
+    stats.weeklyUsage = Object.entries(weeklyMap).map(([week, usage]) => ({
+      week,
+      ...usage
+    }));
+    
+    stats.monthlyUsage = Object.entries(monthlyMap).map(([month, usage]) => ({
+      month,
+      ...usage
+    }));
+
+    // Sort arrays by date
+    stats.dailyUsage.sort((a, b) => a.date.localeCompare(b.date));
+    stats.weeklyUsage.sort((a, b) => a.week.localeCompare(b.week));
+    stats.monthlyUsage.sort((a, b) => a.month.localeCompare(b.month));
+
+    res.json({ 
+      message: 'Water usage statistics retrieved', 
+      stats,
+      metadata: {
+        startOfWeek: startOfWeekStr,
+        totalLogs: userLogs.length
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching water usage stats:', error.message);
+    res.status(500).json({ message: 'Internal server error', error: error.message });
+  }
+};
+
 
 
 // Function to calculate total water usage for a user
@@ -348,71 +437,6 @@ export const getTotalWaterUsage = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
-  }
-};
-
-// Function to get statistics for daily, weekly, and monthly usage
-export const getWaterUsageStats = async (req, res) => {
-  try {
-    await initDB();
-    const { userId } = req.query;
-    if (!userId) return res.status(400).json({ message: 'User ID is required' });
-
-    const userLogs = db.data.waterLogs[userId] || [];
-    const today = new Date();
-    const todayDate = today.toISOString().split('T')[0];
-
-    // Group usage into categories: daily, weekly, and monthly
-    const stats = {
-      dailyUsage: [],
-      weeklyUsage: [],
-      monthlyUsage: [],
-    };
-
-    const dailyMap = {};
-    const weeklyMap = {};
-    const monthlyMap = {};
-
-    // Start of the current week (Sunday)
-    const startOfWeek = getStartOfWeek(today).toISOString();
-
-    userLogs.forEach(log => {
-      const logDate = log.date.split('T')[0];
-      const logMonth = log.date.slice(0, 7); // "YYYY-MM"
-
-      // Aggregate daily usage
-      if (!dailyMap[logDate]) {
-        dailyMap[logDate] = { totalUsage: 0, shower: 0, toilet: 0, tap: 0 };
-      }
-      dailyMap[logDate].totalUsage += log.waterUsed;
-
-      if (log.type === 'shower') dailyMap[logDate].shower += log.waterUsed;
-      if (log.type === 'toilet') dailyMap[logDate].toilet += log.waterUsed;
-      if (log.type === 'sink') dailyMap[logDate].tap += log.waterUsed;
-
-      // Aggregate weekly usage
-      if (log.date >= startOfWeek) {
-        const weekKey = startOfWeek.split('T')[0]; // Current week key
-        if (!weeklyMap[weekKey]) weeklyMap[weekKey] = { totalUsage: 0 };
-        weeklyMap[weekKey].totalUsage += log.waterUsed;
-      }
-
-      // Aggregate monthly usage
-      if (!monthlyMap[logMonth]) {
-        monthlyMap[logMonth] = { totalUsage: 0 };
-      }
-      monthlyMap[logMonth].totalUsage += log.waterUsed;
-    });
-
-    // Convert daily, weekly, and monthly maps to arrays
-    stats.dailyUsage = Object.keys(dailyMap).map(date => ({ date, ...dailyMap[date] }));
-    stats.weeklyUsage = Object.keys(weeklyMap).map(week => ({ week, ...weeklyMap[week] }));
-    stats.monthlyUsage = Object.keys(monthlyMap).map(month => ({ month, ...monthlyMap[month] }));
-
-    res.json({ message: 'Water usage statistics retrieved', stats });
-  } catch (error) {
-    console.error('Error fetching water usage stats:', error.message);
-    res.status(500).json({ message: 'Internal server error' });
   }
 };
 
