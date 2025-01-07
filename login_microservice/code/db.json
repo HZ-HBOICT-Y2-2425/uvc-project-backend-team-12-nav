@@ -44,6 +44,27 @@
       "email": "ivan.sevostianov.com@gmail.com",
       "password": "as;kfjah'giasgklaghasga",
       "completedQuestionnaire": false
+    },
+    {
+      "id": 4,
+      "name": "Ivan Sevostianov",
+      "email": "asgasgalgnakjsg@gmail.com",
+      "password": "aglksknagbasgbna,gbn,a",
+      "completedQuestionnaire": false
+    },
+    {
+      "id": 5,
+      "name": "ivanivan",
+      "email": "ivanivan@gmail.com",
+      "password": "ivan",
+      "completedQuestionnaire": false
+    },
+    {
+      "id": 6,
+      "name": "gaklnsglagnas",
+      "email": "gaklnsglagnas@gmail.com",
+      "password": "sfasgasgag",
+      "completedQuestionnaire": false
     }
   ]
 }

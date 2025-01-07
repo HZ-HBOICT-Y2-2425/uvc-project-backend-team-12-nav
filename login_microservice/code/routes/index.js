@@ -11,6 +11,6 @@ const router = express.Router();
 router.post('/signup', signupController);
 router.post('/login', loginController);
 router.post('/submit-questionnaire', submitQuestionnaire);
-router.get('/current-user', getCurrentUser);
+router.get('/current-user', getCurrentUser);  // Updated to use query parameter
 
 export default router;
