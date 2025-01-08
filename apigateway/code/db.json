@@ -1,7 +1,6 @@
 {
   "meta": {
-    "tile": "List of animals",
-    "date": "September 2024"
-  },
-  "animals" : []
+    "name": "Water Saving App API Gateway",
+    "version": "1.0.0"
+  }
 }

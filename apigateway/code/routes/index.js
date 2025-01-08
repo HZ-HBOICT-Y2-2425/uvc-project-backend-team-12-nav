@@ -1,69 +1,66 @@
+// routes/index.js
 import express from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
-const router = express.Router();
+// Create router
+export const router = express.Router();
 
-// Add the signup proxy route
-const signupServiceProxy = createProxyMiddleware({
-  target: 'http://signup_microservice:3012',
-  changeOrigin: true,
-  pathRewrite: {
-    '^/signup': '/', // Rewrite `/signup` to `/` when forwarding to the signup microservice
+// Define your services
+const SERVICES = {
+  auth: {
+    url: 'http://localhost:3012',
+    routes: ['/', '/signup', '/login', '/submit-questionnaire', '/current-user']
   },
-  onError: (err, req, res) => {
-    console.error(`Error proxying /signup: ${err.message}`);
-    res.status(500).json({ message: 'Error in proxying signup request.' });
+  bank: {
+    url: 'http://localhost:3020',
+    routes: ['/bank']
   },
+  outfits: {
+    url: 'http://localhost:3013',
+    routes: ['/outfits']
+  },
+  waterlog: {
+    url: 'http://localhost:3011',
+    routes: ['/waterlog']
+  }
+};
+
+// Attach services to router for logging purposes
+router.services = SERVICES;
+
+// Setup proxy middleware for each service
+Object.entries(SERVICES).forEach(([service, config]) => {
+  config.routes.forEach(route => {
+    router.use(route, createProxyMiddleware({
+      target: config.url,
+      changeOrigin: true,
+      pathRewrite: (path) => {
+        const prefix = route === '/' ? '' : route;
+        return path.replace(prefix, '');
+      },
+      onProxyReq: (proxyReq, req) => {
+        console.log(`[${new Date().toISOString()}] ${req.method} ${req.path} -> ${service}`);
+      },
+      onProxyRes: (proxyRes, req) => {
+        console.log(`[${new Date().toISOString()}] ${req.method} ${req.path} <- ${service} (${proxyRes.statusCode})`);
+      },
+      onError: (err, req, res) => {
+        console.error(`[${new Date().toISOString()}] Error in ${service}:`, err);
+        res.status(500).json({
+          error: `Error connecting to ${service} service`,
+          message: err.message
+        });
+      }
+    }));
+  });
 });
 
-// Proxy configuration for submitting questionnaire
-const submitQuestionnaireProxy = createProxyMiddleware({
-  target: 'http://login_microservice:3012',
-  changeOrigin: true,
-  pathRewrite: {
-    '^/submit-questionnaire': '/submit-questionnaire',
-  },
-  onError: (err, req, res) => {
-    console.error(`Error proxying /submit-questionnaire: ${err.message}`);
-    res.status(500).json({ message: 'Error in proxying questionnaire submission.' });
-  },
+// Health check endpoint
+router.get('/health', (req, res) => {
+  res.json({
+    status: 'healthy',
+    services: Object.fromEntries(
+      Object.entries(SERVICES).map(([name, config]) => [name, config.url])
+    )
+  });
 });
-
-const outfit_microserviceProxy = createProxyMiddleware({
-  target: 'http://outfit_microservice:3013',
-  changeOrigin: true,
-  pathRewrite: {
-    '^/outfit': '/outfit',
-  },
-  onError: (err, req, res) => {
-    console.error(`Error proxying /outfit: ${err.message}`);
-    res.status(500).json({ message: 'Error in proxying outfit request.' });
-  },
-});
-
-
-// Apply the signup proxy to `/signup` route
-router.use('/signup', signupServiceProxy);
-
-
-// Apply questionnaire submission proxy
-router.use('/submit-questionnaire', submitQuestionnaireProxy);
-
-// Apply outfit microservice proxy
-router.use('/outfit', outfit_microserviceProxy);
-
-// Proxy to the Water Usage Microservice (port 3011)
-const waterUsageProxy = createProxyMiddleware({
-  target: 'http://waterusage:3011',
-  changeOrigin: true,
-  onError: (err, req, res) => {
-    console.error(`Error proxying to water usage microservice: ${err.message}`);
-    res.status(500).json({ message: 'Error connecting to the water usage microservice.' });
-  },
-});
-
-// Apply the water usage proxy
-router.use('/waterlog', waterUsageProxy);
-
-// Export the router
-export default router;

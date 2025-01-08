@@ -65,6 +65,20 @@
       "email": "gaklnsglagnas@gmail.com",
       "password": "sfasgasgag",
       "completedQuestionnaire": false
+    },
+    {
+      "id": 7,
+      "name": "Brandon Rumba",
+      "email": "brandon@gmail.com",
+      "password": "aslahsglahsghasgqwpgjpqlsagasg",
+      "completedQuestionnaire": false
+    },
+    {
+      "id": 8,
+      "name": "Brandon Ivan",
+      "email": "ivan@gmail.com",
+      "password": "nalsfhlahgfangpqjwgnaslgqgwfasg",
+      "completedQuestionnaire": false
     }
   ]
 }

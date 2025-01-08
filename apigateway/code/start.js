@@ -1,13 +1,17 @@
-
+// start.js
 import express from 'express';
 import * as dotenv from 'dotenv';
-import cors from 'cors'; // Import the cors package
-dotenv.config({ path: 'variables.env' });
-import indexRouter from './routes/index.js';
+import cors from 'cors';
+import { router } from './routes/index.js';  // Use named import
 import path from 'path';
 import { fileURLToPath } from 'url';
-import routes from './routes/index.js';
 
+// Load environment variables
+dotenv.config({ path: 'variables.env' });
+
+// Configuration for ES modules dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 80;
@@ -19,18 +23,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Use the index router
-app.use('/', indexRouter);
-
-// Needed to get __dirname with ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 // Serve static files from the frontend build directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Use the routes defined in routes/index.js
-app.use('/', routes);
+// Use the API routes
+app.use('/', router);
 
 // For all other requests, serve the frontend index.html (for client-side routing)
 app.get('*', (req, res) => {
@@ -39,5 +36,22 @@ app.get('*', (req, res) => {
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`API Gateway running on port ${PORT}`);
+  console.log(`🚀 API Gateway running on port ${PORT}`);
+  
+  // Log configured services (if you have them)
+  if (router.services) {
+    console.log('📡 Configured services:');
+    Object.entries(router.services).forEach(([name, config]) => {
+      console.log(`   - ${name}: ${config.url}`);
+    });
+  }
+});
+
+// Handle server errors
+process.on('uncaughtException', (error) => {
+  console.error('Uncaught Exception:', error);
+});
+
+process.on('unhandledRejection', (error) => {
+  console.error('Unhandled Rejection:', error);
 });
