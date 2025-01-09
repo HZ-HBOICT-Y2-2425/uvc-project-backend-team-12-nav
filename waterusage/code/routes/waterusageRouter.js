@@ -8,7 +8,7 @@ import {
   getShowerUsageStats,
   getTotalWaterUsage,
   getWaterUsageStats
-} from '../controllers/waterUsageController.js';
+} from '../controllers/waterusageController.js';
 
 const router = express.Router();
 
