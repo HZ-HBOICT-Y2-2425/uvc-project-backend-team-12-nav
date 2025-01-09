@@ -1,84 +1,83 @@
-// login_microservice/code/controllers/submitQuestionnaire.js
+// controllers/submitQuestionnaire.js
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 
 export async function submitQuestionnaire(req, res) {
-  const { 
-    email, 
-    showerTimes, 
-    showerDuration, 
-    toiletFlushes, 
-    laundryLoads, 
-    newClothesFrequency, 
-    recycledClothes, 
-    meatConsumption, 
-    waterUsage 
-  } = req.body;
+    console.log('Received questionnaire submission request');
+    console.log('Request body:', req.body);
 
-  // Basic Validation
-  if (
-    !email ||
-    !showerTimes ||
-    !showerDuration ||
-    !toiletFlushes ||
-    !laundryLoads ||
-    !newClothesFrequency ||
-    recycledClothes === undefined ||
-    meatConsumption === undefined ||
-    waterUsage === undefined
-  ) {
-    return res.status(400).json({ message: 'All fields are required.' });
-  }
+    // Pull userId from the request body
+    const {
+        userId,
+        showerTimes,
+        showerDuration,
+        toiletFlushes,
+        laundryLoads,
+        newClothesFrequency,
+        recycledClothes,
+        meatConsumption,
+        waterUsage
+    } = req.body;
 
-  try {
-    // Initialize lowdb with default data
-    const adapter = new JSONFile('db.json');
-    const db = new Low(adapter, { users: [] });
+    try {
+        // Initialize database
+        const adapter = new JSONFile('db.json');
+        const db = new Low(adapter, { users: [] });
 
-    // Read data from JSON file (db.json)
-    await db.read();
+        // Read existing data
+        await db.read();
+        console.log('Current database content:', db.data);
 
-    // Ensure default structure
-    db.data ||= { users: [] };
+        // Convert userId to a number just in case
+        const userIndex = db.data.users.findIndex(user => user.id === Number(userId));
+        console.log('Found user at index:', userIndex);
 
-    // Find the user by email
-    const user = db.data.users.find((user) => user.email === email);
-    if (!user) {
-      return res.status(404).json({ message: 'User not found.' });
+        if (userIndex === -1) {
+            console.log('User not found with ID:', userId);
+            return res.status(404).json({ message: 'User not found.' });
+        }
+
+        // Create questionnaire object
+        const questionnaire = {
+            showerTimes,
+            showerDuration,
+            toiletFlushes,
+            laundryLoads,
+            newClothesFrequency,
+            recycledClothes,
+            meatConsumption,
+            waterUsage,
+            submittedAt: new Date().toISOString()
+        };
+
+        // Update user object
+        db.data.users[userIndex] = {
+            ...db.data.users[userIndex],
+            completedQuestionnaire: true,
+            questionnaire,
+            total: waterUsage
+        };
+
+        console.log('Updated user data:', db.data.users[userIndex]);
+
+        // Write data to the DB
+        await db.write();
+        console.log('Successfully saved to database');
+
+        // Verification read
+        await db.read();
+        console.log('Verification - user after save:', db.data.users[userIndex]);
+
+        return res.status(201).json({
+            message: 'Questionnaire submitted successfully.',
+            questionnaire,
+            total: waterUsage
+        });
+    } catch (error) {
+        console.error('Error in submitQuestionnaire:', error);
+        return res.status(500).json({
+            message: 'Internal server error.',
+            error: error.message
+        });
     }
-
-    if (user.completedQuestionnaire) {
-      return res.status(400).json({ message: 'Questionnaire already submitted.' });
-    }
-
-    // Create the questionnaire object
-    const questionnaire = {
-      showerTimes,
-      showerDuration,
-      toiletFlushes,
-      laundryLoads,
-      newClothesFrequency,
-      recycledClothes,
-      meatConsumption,
-      waterUsage,
-      submittedAt: new Date().toISOString(),
-    };
-
-    // Update the user object
-    user.questionnaire = questionnaire;
-    user.total = waterUsage; // Store waterUsage as total
-    user.completedQuestionnaire = true;
-
-    // Write changes to db.json
-    await db.write();
-
-    res.status(201).json({ 
-      message: 'Questionnaire submitted successfully.', 
-      questionnaire,
-      total: waterUsage
-    });
-  } catch (error) {
-    console.error('Error submitting questionnaire:', error);
-    res.status(500).json({ message: 'Internal server error.' });
-  }
 }
