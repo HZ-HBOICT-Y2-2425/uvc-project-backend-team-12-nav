@@ -71,6 +71,24 @@
       "outfitId": "shirt_1",
       "purchaseDate": "2025-01-05T23:32:01.111Z",
       "transactionId": "tr_1736119921110"
+    },
+    {
+      "userId": "1",
+      "outfitId": "hat_1",
+      "purchaseDate": "2025-01-12T22:10:27.866Z",
+      "transactionId": "tr_1736719827860"
+    },
+    {
+      "userId": "1",
+      "outfitId": "shirt_1",
+      "purchaseDate": "2025-01-12T22:10:29.537Z",
+      "transactionId": "tr_1736719829536"
+    },
+    {
+      "userId": "1",
+      "outfitId": "hat_1",
+      "purchaseDate": "2025-01-13T12:32:21.850Z",
+      "transactionId": "tr_1736771541844"
     }
   ]
 }
