@@ -4,20 +4,39 @@
       "id": 1,
       "name": "Ivan Sevostianov",
       "email": "ivan.sevostianov.com@gmail.com",
-      "password": "safqwfagf",
+      "password": "qg;k;qjgqg",
       "completedQuestionnaire": true,
       "questionnaire": {
         "showerTimes": "1-3",
         "showerDuration": "6-15 minutes",
-        "toiletFlushes": "4-6",
+        "toiletFlushes": "1-3",
         "laundryLoads": "1-3",
         "newClothesFrequency": "Monthly",
-        "recycledClothes": 9,
-        "meatConsumption": 7,
-        "waterUsage": 7601,
-        "submittedAt": "2025-01-09T22:52:00.711Z"
+        "recycledClothes": 10,
+        "meatConsumption": 5,
+        "waterUsage": 5516,
+        "submittedAt": "2025-01-13T12:55:32.204Z"
       },
-      "total": 7601
+      "total": 5516
+    },
+    {
+      "id": 2,
+      "name": "aglqlgn",
+      "email": "a@gmail.com",
+      "password": "qgqgnqegkq;e",
+      "completedQuestionnaire": true,
+      "questionnaire": {
+        "showerTimes": "1-3",
+        "showerDuration": "6-15 minutes",
+        "toiletFlushes": "7+",
+        "laundryLoads": "1-3",
+        "newClothesFrequency": "Monthly",
+        "recycledClothes": 15,
+        "meatConsumption": 6,
+        "waterUsage": 6721,
+        "submittedAt": "2025-01-13T12:56:04.288Z"
+      },
+      "total": 6721
     }
   ]
 }

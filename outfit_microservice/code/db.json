@@ -6,89 +6,80 @@
       "type": "Head",
       "price": 50,
       "description": "A stylish eco-friendly hat",
-      "image": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">\n          <circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"black\" stroke-width=\"3\" fill=\"green\"/>\n          <path d=\"M30 50 Q50 30 70 50\" stroke=\"black\" stroke-width=\"3\" fill=\"none\"/>\n        </svg>"
+      "image": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"#2E7D32\" stroke-width=\"3\" fill=\"#4CAF50\"/><path d=\"M30 50 Q50 30 70 50\" stroke=\"#2E7D32\" stroke-width=\"3\" fill=\"none\"/><path d=\"M35 45 Q50 35 65 45\" stroke=\"#2E7D32\" stroke-width=\"2\" fill=\"none\" opacity=\"0.6\"/></svg>"
+    },
+    {
+      "id": "hat_2",
+      "name": "Solar Panel Hat",
+      "type": "Head",
+      "price": 100,
+      "description": "Hat with mini solar panels",
+      "image": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"#1565C0\" stroke-width=\"3\" fill=\"#1976D2\"/><rect x=\"30\" y=\"30\" width=\"40\" height=\"40\" fill=\"#90CAF9\"/><line x1=\"50\" y1=\"30\" x2=\"50\" y2=\"70\" stroke=\"#1565C0\" stroke-width=\"2\"/><line x1=\"30\" y1=\"50\" x2=\"70\" y2=\"50\" stroke=\"#1565C0\" stroke-width=\"2\"/></svg>"
     },
     {
       "id": "shirt_1",
-      "name": "Eco Shirt",
+      "name": "Eco Cotton Tee",
       "type": "Shirt",
       "price": 70,
-      "description": "A trendy eco-friendly shirt",
-      "image": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">\n          <rect x=\"20\" y=\"20\" width=\"60\" height=\"60\" fill=\"blue\"/>\n          <circle cx=\"50\" cy=\"30\" r=\"10\" fill=\"white\"/>\n        </svg>"
+      "description": "Made from organic cotton",
+      "image": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M20 20 L40 20 C45 20 47 15 50 15 C53 15 55 20 60 20 L80 20 L85 35 L75 40 L75 85 L25 85 L25 40 L15 35Z\" fill=\"#4CAF50\" stroke=\"#388E3C\" stroke-width=\"1\"/><path d=\"M45 20 C45 20 47 15 50 15 C53 15 55 20 55 20 C55 22 50 25 50 25 C50 25 45 22 45 20Z\" fill=\"#388E3C\" stroke=\"#388E3C\" stroke-width=\"0.5\"/></svg>"
+    },
+    {
+      "id": "shirt_2",
+      "name": "Ocean Life Tee",
+      "type": "Shirt",
+      "price": 75,
+      "description": "Made from recycled ocean plastic",
+      "image": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M20 20 L40 20 C45 20 47 15 50 15 C53 15 55 20 60 20 L80 20 L85 35 L75 40 L75 85 L25 85 L25 40 L15 35Z\" fill=\"#03A9F4\" stroke=\"#0288D1\" stroke-width=\"1\"/><path d=\"M35 45 Q42.5 40, 50 45 Q57.5 50, 65 45 M35 55 Q42.5 50, 50 55 Q57.5 60, 65 55\" stroke=\"white\" stroke-width=\"2\" fill=\"none\" opacity=\"0.8\"/></svg>"
+    },
+    {
+      "id": "pants_1",
+      "name": "Eco Pants",
+      "type": "Pants",
+      "price": 80,
+      "description": "Sustainable bamboo fabric pants",
+      "image": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M30 20 L70 20 L65 80 L55 80 L50 40 L45 80 L35 80 Z\" fill=\"#795548\" stroke=\"#5D4037\" stroke-width=\"1\"/><path d=\"M30 20 L50 40 L70 20\" fill=\"#5D4037\" opacity=\"0.2\"/></svg>"
+    },
+    {
+      "id": "pants_2",
+      "name": "Water-Saving Jeans",
+      "type": "Pants",
+      "price": 90,
+      "description": "Made with water-saving technology",
+      "image": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M30 20 L70 20 L65 80 L55 80 L50 40 L45 80 L35 80 Z\" fill=\"#1976D2\" stroke=\"#1565C0\" stroke-width=\"1\"/><path d=\"M30 25 L70 25\" stroke=\"#BBDEFB\" stroke-width=\"0.5\" opacity=\"0.8\"/></svg>"
+    },
+    {
+      "id": "shoes_1",
+      "name": "Eco Sneakers",
+      "type": "Shoes",
+      "price": 85,
+      "description": "Made from ocean plastic",
+      "image": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M15 70 L85 70 L85 80 L15 80 Z\" fill=\"#37474F\"/><path d=\"M20 50 C20 30 80 30 80 50 L80 70 L20 70 Z\" fill=\"#009688\" stroke=\"#00796B\" stroke-width=\"1\"/></svg>"
+    },
+    {
+      "id": "shoes_2",
+      "name": "Bamboo Sandals",
+      "type": "Shoes",
+      "price": 45,
+      "description": "Sustainable bamboo footwear",
+      "image": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M20 60 L80 60 L80 70 L20 70 Z\" fill=\"#795548\"/><path d=\"M30 50 L40 50 L40 60 L30 60 Z\" fill=\"#8D6E63\"/><path d=\"M60 50 L70 50 L70 60 L60 60 Z\" fill=\"#8D6E63\"/></svg>"
+    },
+    {
+      "id": "accessory_1",
+      "name": "Eco Watch",
+      "type": "Accessory",
+      "price": 65,
+      "description": "Solar-powered watch",
+      "image": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"50\" cy=\"50\" r=\"30\" fill=\"#9E9E9E\" stroke=\"#757575\" stroke-width=\"2\"/><circle cx=\"50\" cy=\"50\" r=\"25\" fill=\"#FAFAFA\"/><line x1=\"50\" y1=\"50\" x2=\"50\" y2=\"35\" stroke=\"#424242\" stroke-width=\"2\"/></svg>"
+    },
+    {
+      "id": "accessory_2",
+      "name": "Recycled Backpack",
+      "type": "Accessory",
+      "price": 75,
+      "description": "Made from recycled bottles",
+      "image": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"30\" y=\"20\" width=\"40\" height=\"60\" rx=\"5\" fill=\"#9C27B0\" stroke=\"#7B1FA2\" stroke-width=\"1\"/><rect x=\"35\" y=\"30\" width=\"30\" height=\"20\" rx=\"3\" fill=\"#7B1FA2\"/></svg>"
     }
   ],
-  "purchases": [
-    {
-      "userId": "user1",
-      "outfitId": "hat_1",
-      "purchaseDate": "2025-01-05T00:14:13.651Z",
-      "transactionId": "tr_1736036053646"
-    },
-    {
-      "userId": "user1",
-      "outfitId": "hat_1",
-      "purchaseDate": "2025-01-05T00:14:41.850Z",
-      "transactionId": "tr_1736036081847"
-    },
-    {
-      "userId": "user1",
-      "outfitId": "shirt_1",
-      "purchaseDate": "2025-01-05T00:14:43.469Z",
-      "transactionId": "tr_1736036083467"
-    },
-    {
-      "userId": "user1",
-      "outfitId": "hat_1",
-      "purchaseDate": "2025-01-05T00:21:38.406Z",
-      "transactionId": "tr_1736036498401"
-    },
-    {
-      "userId": "user1",
-      "outfitId": "shirt_1",
-      "purchaseDate": "2025-01-05T00:21:42.051Z",
-      "transactionId": "tr_1736036502049"
-    },
-    {
-      "userId": "2",
-      "outfitId": "hat_1",
-      "purchaseDate": "2025-01-05T22:31:28.925Z",
-      "transactionId": "tr_1736116288920"
-    },
-    {
-      "userId": "2",
-      "outfitId": "hat_1",
-      "purchaseDate": "2025-01-05T23:29:52.835Z",
-      "transactionId": "tr_1736119792829"
-    },
-    {
-      "userId": "2",
-      "outfitId": "hat_1",
-      "purchaseDate": "2025-01-05T23:31:59.828Z",
-      "transactionId": "tr_1736119919826"
-    },
-    {
-      "userId": "2",
-      "outfitId": "shirt_1",
-      "purchaseDate": "2025-01-05T23:32:01.111Z",
-      "transactionId": "tr_1736119921110"
-    },
-    {
-      "userId": "1",
-      "outfitId": "hat_1",
-      "purchaseDate": "2025-01-12T22:10:27.866Z",
-      "transactionId": "tr_1736719827860"
-    },
-    {
-      "userId": "1",
-      "outfitId": "shirt_1",
-      "purchaseDate": "2025-01-12T22:10:29.537Z",
-      "transactionId": "tr_1736719829536"
-    },
-    {
-      "userId": "1",
-      "outfitId": "hat_1",
-      "purchaseDate": "2025-01-13T12:32:21.850Z",
-      "transactionId": "tr_1736771541844"
-    }
-  ]
+  "purchases": []
 }
