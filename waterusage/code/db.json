@@ -611,6 +611,83 @@
         "date": "2024-12-17T14:47:33.794Z",
         "flushes": 1,
         "waterUsed": 6
+      },
+      {
+        "type": "washing",
+        "date": "2025-01-12T22:06:58.099Z",
+        "loads": 1,
+        "waterUsed": 40,
+        "brand": "LG"
+      },
+      {
+        "type": "shower",
+        "date": "2025-01-12T22:07:14.592Z",
+        "duration": 0.11666666666666667,
+        "waterUsed": 1.05
+      },
+      {
+        "type": "washing",
+        "date": "2025-01-12T22:09:14.758Z",
+        "loads": 1,
+        "waterUsed": 40,
+        "brand": "LG"
+      },
+      {
+        "type": "sink",
+        "date": "2025-01-12T22:09:44.235Z",
+        "duration": 0.2833333333333333,
+        "waterUsed": 1.7
+      },
+      {
+        "type": "washing",
+        "date": "2025-01-13T12:28:05.608Z",
+        "loads": 1,
+        "waterUsed": 40,
+        "brand": "LG"
+      },
+      {
+        "type": "sink",
+        "date": "2025-01-13T12:33:00.345Z",
+        "duration": 0.1,
+        "waterUsed": 0.6000000000000001
+      },
+      {
+        "type": "washing",
+        "date": "2025-01-13T12:33:11.514Z",
+        "loads": 1,
+        "waterUsed": 40,
+        "brand": "LG"
+      },
+      {
+        "type": "toilet",
+        "date": "2025-01-13T12:33:20.640Z",
+        "flushes": 1,
+        "waterUsed": 6
+      },
+      {
+        "type": "washing",
+        "date": "2025-01-13T12:45:12.707Z",
+        "loads": 1,
+        "waterUsed": 40,
+        "brand": "LG"
+      },
+      {
+        "type": "toilet",
+        "date": "2025-01-13T12:45:23.432Z",
+        "flushes": 1,
+        "waterUsed": 6
+      },
+      {
+        "type": "sink",
+        "date": "2025-01-13T12:56:22.166Z",
+        "duration": 0.03333333333333333,
+        "waterUsed": 0.2
+      },
+      {
+        "type": "toilet",
+        "date": "2025-01-13T12:56:29.388Z",
+        "flushes": 1,
+        "waterUsed": 6
       }
     ],
     "user1": [
@@ -694,7 +771,11 @@
   },
   "weeklyUsage": {
     "1": {
-      "2024-12-14T23:00:00.000Z": 92.7
+      "2024-12-14T23:00:00.000Z": 92.7,
+      "2025-01-04": 215.35
+    },
+    "2": {
+      "2025-01-04": 0
     }
   }
 }

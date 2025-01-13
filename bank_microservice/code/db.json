@@ -2,17 +2,12 @@
   "balances": [
     {
       "id": 1,
-      "amount": 1000
+      "amount": 100
     },
     {
       "id": 2,
-      "amount": 50
-    },
-    {
-      "id": 3,
       "amount": 100
     }
   ],
-  "transactions": [
-  ]
+  "transactions": []
 }

@@ -1,30 +1,39 @@
 // controllers/bankController.js
 import { db } from '../start.js';
 
-export const getBalance = async (req, res) => {
- console.log('Request received for balance. Full request params:', req.params);
- console.log('Request path:', req.path);
- 
- const id = parseInt(req.params.id);
- console.log('Parsed ID:', id, typeof id);
- 
- console.log('Current balances in DB:', db.data.balances);
- 
- const userBalance = db.data.balances.find(b => {
-   console.log('Comparing balance:', b.id, id, b.id === id);
-   return b.id === id;
- });
- 
- if (!userBalance) {
-   console.log('No balance found for ID:', id);
-   return res.status(404).json({ 
-     error: 'User not found',
-     id 
-   });
- }
+const INITIAL_BALANCE = 100; // Set initial balance for new users
 
- console.log('Found balance:', userBalance);
- res.json(userBalance);
+export const getBalance = async (req, res) => {
+  console.log('Request received for balance. Full request params:', req.params);
+  
+  const id = parseInt(req.params.id);
+  console.log('Parsed ID:', id, typeof id);
+  
+  let userBalance = db.data.balances.find(b => b.id === id);
+  
+  // If user doesn't have a balance, create one
+  if (!userBalance) {
+    console.log('Creating new balance for user:', id);
+    userBalance = {
+      id: id,
+      amount: INITIAL_BALANCE
+    };
+    
+    // Add to balances array
+    db.data.balances.push(userBalance);
+    
+    // Save to database
+    try {
+      await db.write();
+      console.log('Created new balance:', userBalance);
+    } catch (error) {
+      console.error('Error saving new balance:', error);
+      return res.status(500).json({ error: 'Failed to create balance' });
+    }
+  }
+
+  console.log('Returning balance:', userBalance);
+  res.json(userBalance);
 };
 
 export const verifyAndDeduct = async (req, res) => {
