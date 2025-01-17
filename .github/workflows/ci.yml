@@ -15,25 +15,19 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
-      # Step 2) Copy a sample .env (if you keep your real .env private)
-      #          or skip this if you DO have a .env committed for demonstration only
-      - name: Copy sample env file
-        run: |
-          cp .env.example .env
-
-      # Step 3) Build containers (shows containerization)
+      # Step 2) Build containers (shows containerization)
       - name: Build Docker images
         run: docker compose -f docker-compose.yml build
 
-      # Step 4) Start containers in detached mode
+      # Step 3) Start containers in detached mode
       - name: Start containers
         run: docker compose -f docker-compose.yml up -d
 
-      # (Optional) Step 5) Show logs to see if containers are running properly
+      # Step 4) Show logs to see if containers are running properly
       - name: Show container logs
         run: docker compose logs
 
-      # Step 6) Stop and remove containers (cleanup)
+      # Step 5) Stop and remove containers (cleanup)
       - name: Tear down containers
         if: always()
         run: docker compose -f docker-compose.yml down
