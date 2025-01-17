@@ -1,52 +1,78 @@
 version: '3.8'
 
 services:
-
   gateway:
     container_name: apigateway
     build: ./apigateway
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - HOST=${HOST}
+      # This sets PORT *inside* the container so your code can read process.env.PORT = 3010
+      - PORT=${GATEWAY_PORT}
     volumes:
       - ./apigateway/code:/usr/src/app
     networks:
       - msexample
+    # Here we also map the host port to container port 3010 dynamically
+    # If GATEWAY_PORT is 3010, you'll get "3010:3010"
     ports:
-      - "3010:3010"
+      - "${GATEWAY_PORT}:3010"
     working_dir: /usr/src/app
     command: bash -c "npm install && npm run dev"
 
   waterusage:
     container_name: waterusage
     build: ./waterusage
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - HOST=${HOST}
+      - PORT=${WATERUSAGE_PORT}
     volumes:
       - ./waterusage/code:/usr/src/app
     networks:
       - msexample
     ports:
-      - "3011:3011"
+      - "${WATERUSAGE_PORT}:3011"
     working_dir: /usr/src/app
     command: bash -c "npm install && npm run dev"
 
   login_microservice:
     container_name: login_microservice
     build: ./login_microservice
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - HOST=${HOST}
+      - PORT=${LOGIN_PORT}
     volumes:
       - ./login_microservice/code:/usr/src/app
     networks:
       - msexample
     ports:
-      - "3012:3012"
+      - "${LOGIN_PORT}:3012"
     working_dir: /usr/src/app
     command: bash -c "npm install && npm run dev"
 
   outfit_microservice:
     container_name: outfit_microservice
     build: ./outfit_microservice
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - HOST=${HOST}
+      - PORT=${OUTFIT_PORT}
     volumes:
       - ./outfit_microservice/code:/usr/src/app
     networks:
       - msexample
     ports:
-      - "3013:3013"
+      - "${OUTFIT_PORT}:3013"
     working_dir: /usr/src/app
     command: bash -c "npm install && npm run dev"
 
