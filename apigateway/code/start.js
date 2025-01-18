@@ -1,18 +1,38 @@
 
 import express from 'express';
+<<<<<<< HEAD
 import path from 'path';
 import { fileURLToPath } from 'url';
 import routes from './routes/index.js';
+=======
+import * as dotenv from 'dotenv';
+import cors from 'cors'; // Import the cors package
+
+dotenv.config({ path: 'variables.env' });
+import indexRouter from './routes/index.js';
+>>>>>>> feature/loginMicroservice
 
 const app = express();
 const PORT = process.env.PORT || 80;
 
+<<<<<<< HEAD
 // Needed to get __dirname with ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Serve static files from the frontend build directory
 app.use(express.static(path.join(__dirname, 'public')));
+=======
+// Enable CORS middleware
+app.use(cors());
+
+// Support JSON encoded and URL-encoded bodies
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Use the index router
+app.use('/', indexRouter);
+>>>>>>> feature/loginMicroservice
 
 // Use the routes defined in routes/index.js
 app.use('/', routes);
