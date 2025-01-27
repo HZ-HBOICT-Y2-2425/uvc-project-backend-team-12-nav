@@ -2,20 +2,20 @@ name: CI Pipeline
 
 on:
   push:
-    branches: 
+    branches:
       - main
       - feature/pipeline
 
 jobs:
-  build-and-run:
+  build-and-run-microservices:
     runs-on: ubuntu-latest
-    
+
     steps:
-      # Step 1) Check out code
+      # Step 1) Check out the code
       - name: Check out repository
         uses: actions/checkout@v3
 
-      # Step 2) Build containers (shows containerization)
+      # Step 2) Build Docker images
       - name: Build Docker images
         run: docker compose -f docker-compose.yml build
 
@@ -23,11 +23,30 @@ jobs:
       - name: Start containers
         run: docker compose -f docker-compose.yml up -d
 
-      # Step 4) Show logs to see if containers are running properly
+      # Step 4) (Optional) Test the services
+      - name: Test endpoints
+        run: |
+          # Wait a bit for the services to be up
+          echo "Waiting a few seconds for microservices..."
+          sleep 10
+
+          echo "Checking Gateway endpoint..."
+          curl --fail http://localhost:3010/ || (echo "Gateway test failed!" && exit 1)
+
+          echo "Checking Waterusage endpoint..."
+          curl --fail http://localhost:3011/ || (echo "Waterusage test failed!" && exit 1)
+
+          echo "Checking Login microservice endpoint..."
+          curl --fail http://localhost:3012/ || (echo "Login test failed!" && exit 1)
+
+          echo "Checking Outfit microservice endpoint..."
+          curl --fail http://localhost:3013/ || (echo "Outfit test failed!" && exit 1)
+
+      # Step 5) Show container logs (for debugging if needed)
       - name: Show container logs
         run: docker compose logs
 
-      # Step 5) Stop and remove containers (cleanup)
+      # Step 6) Tear down containers
       - name: Tear down containers
         if: always()
         run: docker compose -f docker-compose.yml down
