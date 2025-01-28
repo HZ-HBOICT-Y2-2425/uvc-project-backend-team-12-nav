@@ -17,20 +17,20 @@ jobs:
 
       # Step 2: Build containers (local validation)
       - name: Build Docker images
-        run: docker-compose -f docker-compose.yml build
+        run: docker compose -f docker-compose.yml build  # Changed syntax
 
       # Step 3: Start containers (local validation)
       - name: Start containers
-        run: docker-compose -f docker-compose.yml up -d
+        run: docker compose -f docker-compose.yml up -d  # Changed syntax
 
       # Step 4: Show logs to see if containers are running properly
       - name: Show container logs
-        run: docker-compose logs
+        run: docker compose logs  # Changed syntax
 
       # Step 5: Tear down containers (cleanup after local validation)
       - name: Tear down containers
         if: always()
-        run: docker-compose -f docker-compose.yml down
+        run: docker compose -f docker-compose.yml down  # Changed syntax
 
       # Step 6: Deploy to AWS EC2
       - name: Deploy to AWS EC2
@@ -47,6 +47,6 @@ jobs:
             git fetch
             git checkout feature/pipeline
             git pull origin feature/pipeline
-            docker-compose -f docker-compose-prod.yml down
-            docker-compose -f docker-compose-prod.yml up -d --build
+            docker compose -f docker-compose-prod.yml down  # Changed syntax
+            docker compose -f docker-compose-prod.yml up -d --build  # Changed syntax
           EOF
