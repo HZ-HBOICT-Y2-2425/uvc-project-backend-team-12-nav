@@ -1,33 +1,50 @@
-name: CI Pipeline
+name: CI/CD Pipeline with AWS Deployment
 
 on:
   push:
-    branches: 
+    branches:
       - main
       - feature/pipeline
 
 jobs:
-  build-and-run:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1) Check out code
+      # Step 1: Check out code
       - name: Check out repository
         uses: actions/checkout@v3
 
-      # Step 2) Build containers (shows containerization)
+      # Step 2: Build containers (local validation)
       - name: Build Docker images
         run: docker compose -f docker-compose.yml build
 
-      # Step 3) Start containers in detached mode
+      # Step 3: Start containers (local validation)
       - name: Start containers
         run: docker compose -f docker-compose.yml up -d
 
-      # Step 4) Show logs to see if containers are running properly
+      # Step 4: Show logs to see if containers are running properly
       - name: Show container logs
         run: docker compose logs
 
-      # Step 5) Stop and remove containers (cleanup)
+      # Step 5: Tear down containers (cleanup after local validation)
       - name: Tear down containers
         if: always()
         run: docker compose -f docker-compose.yml down
+
+      # Step 6: Deploy to AWS EC2
+      - name: Deploy to AWS EC2
+        env:
+          HOST: "51.20.193.85" # Replace with your EC2 public IPv4 address
+          USER: "ec2-user"
+          KEY_PATH: ${{ secrets.AWS_KEY_PATH }} # Add this secret in GitHub
+        run: |
+          echo "Deploying to EC2..."
+          ssh -o StrictHostKeyChecking=no -i $KEY_PATH $USER@$HOST << 'EOF'
+            cd /home/ec2-user/uvc-project-backend-team-12-nav
+            git fetch
+            git checkout feature/pipeline
+            git pull origin feature/pipeline
+            docker compose -f docker-compose-prod.yml down
+            docker compose -f docker-compose-prod.yml up -d --build
+          EOF
