@@ -37,12 +37,10 @@ jobs:
         env:
           HOST: "51.20.193.85" # Replace with your EC2 public IPv4 address
           USER: "ec2-user"
-          KEY_PATH: "/tmp/aws_key.pem"
+          KEY_PATH: ${{ secrets.AWS_KEY_PATH }} # Add this secret in GitHub
         run: |
-          echo "${{ secrets.AWS_KEY_PATH }}" > $KEY_PATH
-          sed -i 's/\\n/\n/g' $KEY_PATH # Fixes formatting issues
-          chmod 400 $KEY_PATH
-            ssh -o StrictHostKeyChecking=no -i $KEY_PATH $USER@$HOST << 'EOF'
+          echo "Deploying to EC2..."
+          ssh -o StrictHostKeyChecking=no -i $KEY_PATH $USER@$HOST << 'EOF'
             cd /home/ec2-user/uvc-project-backend-team-12-nav
             git fetch
             git checkout feature/pipeline
