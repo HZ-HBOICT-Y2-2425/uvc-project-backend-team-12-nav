@@ -47,6 +47,6 @@ jobs:
             git fetch
             git checkout feature/pipeline
             git pull origin feature/pipeline
-            docker compose -f docker-compose-prod.yml down  # Changed syntax
-            docker compose -f docker-compose-prod.yml up -d --build  # Changed syntax
+            docker-compose -f docker-compose-prod.yml down  # Changed syntax
+            docker-compose -f docker-compose-prod.yml up -d --build  # Changed syntax
           EOF
