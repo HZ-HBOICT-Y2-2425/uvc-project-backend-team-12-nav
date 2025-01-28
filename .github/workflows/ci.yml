@@ -35,16 +35,18 @@ jobs:
       # Step 6: Deploy to AWS EC2
       - name: Deploy to AWS EC2
         env:
-          HOST: "51.20.193.85" # Replace with your EC2 public IPv4 address
+          HOST: "51.20.193.85"
           USER: "ec2-user"
-          KEY_PATH: ${{ secrets.AWS_KEY_PATH }} # Add this secret in GitHub
+         KEY_PATH: "/tmp/aws_key.pem"
         run: |
-          echo "Deploying to EC2..."
+          echo "${{ secrets.AWS_KEY_PATH }}" > $KEY_PATH
+          sed -i 's/\\n/\n/g' $KEY_PATH
+          chmod 400 $KEY_PATH
           ssh -o StrictHostKeyChecking=no -i $KEY_PATH $USER@$HOST << 'EOF'
-            cd /home/ec2-user/uvc-project-backend-team-12-nav
-            git fetch
-            git checkout feature/pipeline
-            git pull origin feature/pipeline
-            docker compose -f docker-compose-prod.yml down
-            docker compose -f docker-compose-prod.yml up -d --build
+          cd /home/ec2-user/uvc-project-backend-team-12-nav
+          git fetch
+          git checkout feature/pipeline
+          git pull origin feature/pipeline
+          docker-compose -f docker-compose-prod.yml down
+          docker-compose -f docker-compose-prod.yml up -d --build
           EOF
