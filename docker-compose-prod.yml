@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  gateway:
+    container_name: apigateway
+    build: ./apigateway
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - HOST=${HOST}
+      - PORT=${GATEWAY_PORT}
+    volumes:
+      - ./apigateway/code:/usr/src/app
+    networks:
+      - prodexample
+    ports:
+      - "${GATEWAY_PORT}:3010"
+    working_dir: /usr/src/app
+    command: bash -c "npm install && npm run dev"
+
+  login_microservice:
+    container_name: login_microservice
+    build: ./login_microservice
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - HOST=${HOST}
+      - PORT=${LOGIN_PORT}
+    volumes:
+      - ./login_microservice/code:/usr/src/app
+    networks:
+      - prodexample
+    ports:
+      - "${LOGIN_PORT}:3012"
+    working_dir: /usr/src/app
+    command: bash -c "npm install && npm run dev"
+
+networks:
+  prodexample:
+    driver: bridge
