@@ -23,7 +23,7 @@ export const loginController = async (req, res) => {
       );
 
       if (!user) {
-        return res.status(401).send("Invalid email or password.");
+        return res.status(401).send("Invalid email or password. TEST");
       }
 
       const userData = {
