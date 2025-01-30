@@ -7,5 +7,9 @@ export default {
   moduleNameMapper: {
     "^(\\.{1,2}/.*)\\.js$": "$1", // Remove .js extension from imports
   },
-  testMatch: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[tj]s?(x)"], // Match test files
+  testMatch: [
+    "**/__tests__/**/*.[jt]s?(x)",
+    "**/?(*.)+(spec|test).[tj]s?(x)", // Match test files
+  ],
+  setupFilesAfterEnv: ["/jest.setup.js"], // Specify the setup file
 };
